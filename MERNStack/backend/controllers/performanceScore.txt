@@ -1,0 +1,57 @@
+Best performing branch:
+const getBranches = async (req, res) => {
+  try {
+    // Find all branches and sort them by performanceScore in descending order
+    const branches = await Branch.find({}).sort({ performanceScore: -1 });
+
+    // Get the first branch (highest performing)
+    const highestPerformingBranch = branches[0];
+
+    if (highestPerformingBranch) {
+      res.json(highestPerformingBranch);
+    } else {
+      res.json({ message: 'No branches found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error retrieving branches' });
+  }
+};
+
+or
+
+const getBranches = async (req, res) => {
+  try {
+    // Find the branch with the highest performanceScore
+    const highestPerformingBranch = await Branch.findOne({}, { sort: { performanceScore: -1 } });
+
+    if (highestPerformingBranch) {
+      res.json(highestPerformingBranch);
+    } else {
+      res.json({ message: 'No branches found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error retrieving branches' });
+  }
+};
+
+Worst performing branch: 
+const getBranches = async (req, res) => {
+  try {
+    // Find all branches and sort them by performanceScore in ascending order
+    const branches = await Branch.find({}).sort({ performanceScore: 1 });
+
+    // Get the first branch (lowest performing)
+    const lowestPerformingBranch = branches[0];
+
+    if (lowestPerformingBranch) {
+      res.json(lowestPerformingBranch);
+    } else {
+      res.json({ message: 'No branches found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error retrieving branches' });
+  }
+};
