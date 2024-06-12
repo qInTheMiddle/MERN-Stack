@@ -1,16 +1,32 @@
   const Branch = require('../models/branchModel')
   const mongoose = require('mongoose') 
 
-  
+  // get all branches:
   const getBranches = async (req, res) => {
       const branches = await Branch.find({}).sort({createdAt: -1})
 
       res.status(200).json(branches)
   };
 
+  //get a single branch
+  const getBranch = async (req,res) => {
+    const { id } = req.params
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'Invalid ID' });
+    }
 
-  const createBranch = async (req, res) => {
+    const branch = await Branch.findById(id)
+  
+    if (!branch) {
+      return res.status(404).json({error: 'No such branch'})
+    }
+
+    res.status(200).json(branch)
+  }
+
+  // create new branch
+  const addBranch = async (req, res) => {
       const {name, location, performanceScore} = req.body
 
       let emptyFields = []
@@ -37,7 +53,7 @@
       }
   };
 
-  
+  // delete a branch
   const deleteBranch = async (req, res) => {
       const { id } = req.params
 
@@ -54,7 +70,7 @@
       res.status(200).json(branch)
   };
 
-  
+  // update a branch
   const updateBranch = async (req, res) => {
       const { id } = req.params
 
@@ -74,7 +90,7 @@
   };
 
 
-  
+  // highest performing branches
   const bestBranches = async (req, res) => {
       try {
         
@@ -89,7 +105,7 @@
     };
 
 
-    
+    // lowest performing branches
     const worstBranches = async (req, res) => {
       try {
         
@@ -106,8 +122,8 @@
 
   module.exports = {
       getBranches,
-      // getBranch,
-      createBranch,
+      getBranch,
+      addBranch,
       deleteBranch,
       updateBranch,
       bestBranches,
