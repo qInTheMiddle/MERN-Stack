@@ -38,9 +38,9 @@ const Navbar = () => {
                     <h1>Branch Information Manager</h1>
                 </Link>
                 <div>
-                    <button onClick={handleBestPerforming}>Best Performing</button>
-                    <button onClick={handleLowPerforming}>Low Performing</button>
-                    <button onClick={handleShowAll}>Most Recent</button>
+                    <button className="sort" onClick={handleBestPerforming}>Best Performing</button>
+                    <button className="sort" onClick={handleLowPerforming}>Low Performing</button>
+                    <button className="sort" onClick={handleShowAll}>Most Recent</button>
                 </div>
             </div>
         </header>
