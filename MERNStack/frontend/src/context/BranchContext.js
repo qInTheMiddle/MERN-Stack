@@ -31,6 +31,14 @@ export const branchesReducer = (state, action) => {
                     branch._id === branchId ? { ...branch, updateFormOpen: isOpen } : branch
                 )
             };
+        case 'GET_SINGLE_BRANCH':
+            const updatedBranch = action.payload;
+            return {
+                ...state,
+                branches: state.branches.map(branch =>
+                    branch._id === updatedBranch._id ? updatedBranch : branch
+                )
+            };
         default:
             return state
     }
