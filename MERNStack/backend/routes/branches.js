@@ -1,36 +1,40 @@
-const express = require('express')
-const {
-    createBranch, 
-    getBranches,
-    // getBranch,
-    deleteBranch,
-    updateBranch,
-    bestBranches,
-    worstBranches
-} = require('../controllers/branchController')
+        const express = require('express')
+        const {
+            addBranch, 
+            getBranches,
+            getBranch,
+            deleteBranch,
+            updateBranch,
+            bestBranches,
+            worstBranches
+        } = require('../controllers/branchController')
+        
+        const router = express.Router()
 
-const router = express.Router()
+        // Best Performing Branch
+        router.get('/best-performing', bestBranches)
 
-// GET all branches
-router.get('/', getBranches)
+        // Low Performing Branch
+        router.get('/low-performing', worstBranches)
 
-// // GET a single branch
-// router.get('/:id', getBranch)
+        
 
-// POST a new branch
-router.post('/', createBranch)
+        // GET all branches
+        router.get('/', getBranches)
 
-// DELETE a workout
-router.delete('/:id', deleteBranch)
+        // // GET a single branch
+        router.get('/:id', getBranch)
 
-// UPDATE a workout
-router.put('/:id', updateBranch)
+        // POST a new branch
+        router.post('/', addBranch)
 
-// Best Performing Branch
-router.get('/best-performing', bestBranches)
+        // DELETE a workout
+        router.delete('/:id', deleteBranch)
 
-// Low Performing Branch
-router.get('/low-performing', worstBranches)
+        // UPDATE a workout
+        router.put('/:id', updateBranch)
+
+        
 
 
-module.exports = router
+        module.exports = router
