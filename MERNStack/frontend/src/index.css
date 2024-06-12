@@ -101,3 +101,24 @@ div.error {
 input.error {
   border: 1px solid var(--error); 
 }
+
+.sort {
+  background: #fff;
+  border: 0;
+  color: #1aac83;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.update {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+
