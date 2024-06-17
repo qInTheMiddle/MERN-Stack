@@ -10,8 +10,8 @@ const BranchForm = () => {
     const [error, setError] = useState(null)
     const [emptyFields, setEmptyFields] = useState([])
 
-    const handleSubmit = async (b) => {
-        b.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
         const branch = {name, location, performanceScore}
 
@@ -46,7 +46,7 @@ const BranchForm = () => {
             <label>Branch Name</label>
             <input 
                 type="text"
-                onChange={(b) => setName(b.target.value)}
+                onChange={(e) => setName(e.target.value)}
                 value={name}    
                 className={emptyFields.includes('name') ? 'error' : ''}            
             />
@@ -54,7 +54,7 @@ const BranchForm = () => {
             <label>Location</label>
             <input 
                 type="text"
-                onChange={(b) => setLocation(b.target.value)}
+                onChange={(e) => setLocation(e.target.value)}
                 value={location}                
                 className={emptyFields.includes('location') ? 'error' : ''}
             />
@@ -62,7 +62,7 @@ const BranchForm = () => {
             <label>Performance Score</label>
             <input 
                 type="number"
-                onChange={(b) => setPerformanceScore(b.target.value)}
+                onChange={(e) => setPerformanceScore(e.target.value)}
                 value={performanceScore}
                 className={emptyFields.includes('performanceScore') ? 'error' : ''}                
             />
